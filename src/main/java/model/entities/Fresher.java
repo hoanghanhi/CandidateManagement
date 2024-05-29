@@ -1,17 +1,19 @@
 package model.entities;
 
+import exception.EmailException;
+
 import java.sql.Date;
 
-public class Fresher extends Candidate{
+public class Fresher extends Candidate {
     private int candidateID;
-    private String graduateDate;
+    private Date graduateDate;
     private String graduateRank;
     private String education;
 
     public Fresher() {
     }
 
-    public Fresher(int candidateID, String fullName, String birthDay, String phone, String email, int candidateType, int candidateID1, String graduateDate, String graduateRank, String education){
+    public Fresher(int candidateID, String fullName, Date birthDay, String phone, String email, int candidateType, int candidateID1, Date graduateDate, String graduateRank, String education) throws EmailException {
         super(candidateID, fullName, birthDay, phone, email, candidateType);
         this.candidateID = candidateID1;
         this.graduateDate = graduateDate;
@@ -29,11 +31,11 @@ public class Fresher extends Candidate{
         this.candidateID = candidateID;
     }
 
-    public String getGraduateDate() {
+    public Date getGraduateDate() {
         return graduateDate;
     }
 
-    public void setGraduateDate(String graduateDate) {
+    public void setGraduateDate(Date graduateDate) {
         this.graduateDate = graduateDate;
     }
 
@@ -54,10 +56,11 @@ public class Fresher extends Candidate{
     }
 
     @Override
-    public void showMe() {
-        super.showMe();
-        System.out.println("Graduation date: " + graduateDate);
-        System.out.println("Graduation rank : " + graduateRank);
-        System.out.println("Education : " + education);
+    public String showMe() {
+        return super.toString() + "Fresher{"  +
+                ", graduateDate=" + graduateDate +
+                ", graduateRank='" + graduateRank + '\'' +
+                ", education='" + education + '\'' +
+                '}';
     }
 }

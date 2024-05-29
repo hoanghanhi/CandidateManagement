@@ -1,6 +1,8 @@
 package controller;
 
-import common.Connect;
+import common.ConnectionPool;
+import common.Log;
+import common.SortCandidate;
 import model.dao.CandidateDAO;
 import model.dao.ExprerienceDAO;
 import model.dao.FresherDAO;
@@ -11,41 +13,42 @@ import model.entities.Fresher;
 import model.entities.Intern;
 
 import java.sql.Connection;
-import java.sql.SQLException;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
 public class CandidateController {
     public void addCandidate(List<Candidate> candidateList) {
-        Connection connection = Connect.getConnection();
 
-        try {
-            connection.setAutoCommit(false);
+        try (
+                Connection connectionPool = ConnectionPool.getConnection();
+
+        ) {
+            connectionPool.setAutoCommit(false);
 
             for (Candidate candidate : candidateList) {
                 if (candidate instanceof Experience) {
                     ExprerienceDAO exprerienceDAO = new ExprerienceDAO();
-                    exprerienceDAO.addData(candidate, connection);
-                }
-                else if (candidate instanceof Fresher) {
+                    exprerienceDAO.addData(candidate, connectionPool);
+                } else if (candidate instanceof Fresher) {
                     FresherDAO fresherDAO = new FresherDAO();
-                    fresherDAO.addData(candidate, connection);
-                }
-                else if (candidate instanceof Intern){
+                    fresherDAO.addData(candidate, connectionPool);
+                } else if (candidate instanceof Intern) {
                     InternDAO internDAO = new InternDAO();
-                    internDAO.addData(candidate, connection);
+                    internDAO.addData(candidate, connectionPool);
                 }
             }
-            connection.commit();
-            connection.setAutoCommit(true);
+            connectionPool.commit();
+            connectionPool.setAutoCommit(true);
         } catch (Exception e) {
-            try {
-                connection.rollback();
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
-            System.out.println("loi");
+            Log.error(e.getMessage());
+//            try {
+//                connectionPool.rollback();
+//            } catch (SQLException ex) {
+//                throw new RuntimeException(ex);
+//            }
+            System.out.println("Error (All information will not save to database).");
         }
     }
 
@@ -84,8 +87,42 @@ public class CandidateController {
         Candidate.setCandidateCount(0);
     }
 
-    public void showFullName(){
+    public void showFullName() {
         CandidateDAO candidateDAO = new CandidateDAO();
         candidateDAO.listFullName();
+    }
+
+    public void showAll() {
+        try {
+            CandidateDAO candidateDAO = new CandidateDAO();
+
+            showMe(candidateDAO.getList());
+        }catch (Exception e){
+            Log.error(e.getMessage());
+            System.out.println("Error");
+        }
+    }
+    public void showMe(List<Candidate> candidateList) {
+        try {
+            for (Candidate candidate : candidateList) {
+                System.out.println(candidate.showMe());
+            }
+        } catch (Exception e) {
+            Log.error(e.getMessage());
+            System.out.println("Error");
+        }
+    }
+
+    public void showSortedList() {
+        try {
+            CandidateDAO candidateDAO = new CandidateDAO();
+            List<Candidate> candidateList = candidateDAO.getList();
+            Collections.sort(candidateList, new SortCandidate());
+            showMe(candidateList);
+            System.out.println();
+        } catch (Exception e) {
+            System.out.println("Error");
+            Log.error(e.getMessage());
+        }
     }
 }

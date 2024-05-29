@@ -1,16 +1,18 @@
 package model.entities;
 
+import exception.EmailException;
+
 import java.sql.Date;
 
-public class Candidate {
+public abstract class Candidate {
     private static int candidateCount;
 
     private int candidateID;
     private String fullName;
-    private String birthDay;
+    private Date birthDay;
     private String phone;
     private String email;
-    private int candidateType;
+    private Integer candidateType;
 
     public static int getCandidateCount() {
         return candidateCount;
@@ -36,11 +38,11 @@ public class Candidate {
         this.fullName = fullName;
     }
 
-    public String getBirthDay() {
+    public Date getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(String birthDay) {
+    public void setBirthDay(Date birthDay) {
         this.birthDay = birthDay;
     }
 
@@ -60,11 +62,11 @@ public class Candidate {
         this.email = email;
     }
 
-    public int getCandidateType() {
+    public Integer getCandidateType() {
         return candidateType;
     }
 
-    public void setCandidateType(int candidateType) {
+    public void setCandidateType(Integer candidateType) {
         this.candidateType = candidateType;
     }
 
@@ -72,7 +74,7 @@ public class Candidate {
         candidateCount++;
     }
 
-    public Candidate(int candidateID, String fullName, String birthDay, String phone, String email, int candidateType) {
+    public Candidate(int candidateID, String fullName, Date birthDay, String phone, String email, Integer candidateType) throws EmailException {
         this();
         this.candidateID = candidateID;
         this.fullName = fullName;
@@ -82,13 +84,17 @@ public class Candidate {
         this.candidateType = candidateType;
     }
 
-    public void showMe() {
-        System.out.println("Candidate ID: " + candidateID);
-        System.out.println("Full Name: " + fullName);
-        System.out.println("Birth Date: " + birthDay);
-        System.out.println("Phone: " + phone);
-        System.out.println("Email: " + email);
-        System.out.println("Candidate Type: " + candidateType);
-    }
+    public abstract String showMe();
 
+    @Override
+    public String toString() {
+        return "Candidate{" +
+                "candidateID=" + candidateID +
+                ", fullName='" + fullName + '\'' +
+                ", birthDay=" + birthDay +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", candidateType=" + candidateType +
+                '}';
+    }
 }

@@ -1,5 +1,6 @@
 package model.dao;
 
+import common.Log;
 import model.entities.Candidate;
 import model.entities.Intern;
 
@@ -29,6 +30,7 @@ public class InternDAO extends CandidateDAO{
         super.addData(candidate, connection);
         try {
             String query = "insert into Intern(CandidateID, Majors, Semester, UniversityName) values(?,?,?,?)";
+            Log.info(query);
             PreparedStatement myStmt = connection.prepareStatement(query);
             myStmt.setInt(1,candidate.getCandidateID());
             myStmt.setString(2,((Intern) candidate).getMajors());
@@ -37,6 +39,7 @@ public class InternDAO extends CandidateDAO{
 
             myStmt.execute();
         } catch (SQLException e) {
+            Log.error(e.getMessage());
             throw new RuntimeException(e);
         }
     }

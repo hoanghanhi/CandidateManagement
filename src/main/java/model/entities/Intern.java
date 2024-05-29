@@ -1,5 +1,7 @@
 package model.entities;
 
+import exception.EmailException;
+
 import java.sql.Date;
 
 public class Intern extends Candidate{
@@ -11,7 +13,7 @@ public class Intern extends Candidate{
     public Intern() {
     }
 
-    public Intern(int candidateID, String fullName, String birthDay, String phone, String email, int candidateType, int candidateID1, String majors, int semester, String universityName){
+    public Intern(int candidateID, String fullName, Date birthDay, String phone, String email, int candidateType, int candidateID1, String majors, int semester, String universityName) throws EmailException {
         super(candidateID, fullName, birthDay, phone, email, candidateType);
         this.candidateID = candidateID1;
         this.majors = majors;
@@ -54,10 +56,11 @@ public class Intern extends Candidate{
     }
 
     @Override
-    public void showMe() {
-        super.showMe();
-        System.out.println("Majors : " + majors);
-        System.out.println("Semester : " + semester);
-        System.out.println("University name : " + universityName);
+    public String showMe() {
+        return super.toString() + "Intern{" +
+                ", majors='" + majors + '\'' +
+                ", semester=" + semester +
+                ", universityName='" + universityName + '\'' +
+                '}';
     }
 }
