@@ -43,6 +43,7 @@ public class CandidateController {
             connectionPool.setAutoCommit(true);
         } catch (Exception e) {
             Log.error(e.getMessage());
+            e.printStackTrace();
 //            try {
 //                connectionPool.rollback();
 //            } catch (SQLException ex) {
@@ -123,6 +124,26 @@ public class CandidateController {
         } catch (Exception e) {
             System.out.println("Error");
             Log.error(e.getMessage());
+        }
+    }
+
+    public void updateById(){
+        try (
+                Connection connectionPool = ConnectionPool.getConnection();
+                ){
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter Id of candidate to update");
+            int id = Integer.parseInt(scanner.nextLine());
+            CandidateDAO candidateDAO = new CandidateDAO();
+            Candidate candidate = candidateDAO.getCandidateById(id);
+            if (candidate == null){
+                System.out.println("Invalid Id");
+            } else {
+                candidateDAO.updateData(candidate);
+                candidateDAO.updateById(candidate,connectionPool);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

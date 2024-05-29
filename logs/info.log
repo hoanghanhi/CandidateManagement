@@ -1,0 +1,6 @@
+22:58:43.982 [main] INFO  InfoLogger - Database query executed at 2024-05-29T22:58:43.982619900 - Query: select Fullname from Candidate
+00:15:49.854 [main] INFO  InfoLogger - Database query executed at 2024-05-30T00:15:49.854885700 - Query: SELECT * FROM Candidate WHERE CandidateID = ?
+00:17:15.073 [main] INFO  InfoLogger - Database query executed at 2024-05-30T00:17:15.073238 - Query: SELECT * FROM Candidate WHERE CandidateID = ?
+00:30:29.595 [main] INFO  InfoLogger - Database query executed at 2024-05-30T00:30:29.595311200 - Query: SELECT * FROM Candidate WHERE CandidateID = ?
+00:31:49.799 [main] INFO  InfoLogger - Database query executed at 2024-05-30T00:31:49.799459300 - Query: SELECT * FROM Candidate WHERE CandidateID = ?
+00:37:21.659 [main] INFO  InfoLogger - Database query executed at 2024-05-30T00:37:21.659247800 - Query: SELECT * FROM Candidate WHERE CandidateID = ?

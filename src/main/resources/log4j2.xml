@@ -4,10 +4,22 @@
         <File name="FileLogger" fileName="logs/app.log" append="true">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </File>
+        <File name="InfoLog" fileName="logs/info.log" immediateFlush="true" append="true">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+        <File name="ErrorLog" fileName="logs/error.log" immediateFlush="true" append="true">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
     </Appenders>
     <Loggers>
-        <Root level="info">
+        <Root level="info" additivity="false">
             <AppenderRef ref="FileLogger"/>
         </Root>
+        <Logger name="InfoLogger" level="debug" additivity="false">
+            <AppenderRef ref="InfoLog"/>
+        </Logger>
+        <Logger name="ErrorLogger" level="error" additivity="false">
+            <AppenderRef ref="ErrorLog"/>
+        </Logger>
     </Loggers>
 </Configuration>

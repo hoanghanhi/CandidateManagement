@@ -33,6 +33,9 @@ public class Main {
                     case 4:
                         candidateController.showSortedList();
                         break;
+                    case 5:
+                        candidateController.updateById();
+                        break;
                     default:
                         System.out.println("...");
                         break;

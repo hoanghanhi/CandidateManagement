@@ -97,4 +97,5 @@ public abstract class Candidate {
                 ", candidateType=" + candidateType +
                 '}';
     }
+    
 }

@@ -1,0 +1,12 @@
+23:57:05.594 [main] ERROR ErrorLogger - Exception occurred at 2024-05-29T23:57:05.582595200 - The value is not set for the parameter number 1.
+23:59:34.810 [main] ERROR ErrorLogger - Exception occurred at 2024-05-29T23:59:34.810616 - The column name ExpInYear is not valid.
+00:01:30.212 [main] ERROR ErrorLogger - Exception occurred at 2024-05-30T00:01:30.211782500 - The column name ExpInYear is not valid.
+00:05:05.837 [main] ERROR ErrorLogger - Exception occurred at 2024-05-30T00:05:05.837611 - The column name ExpInYear is not valid.
+00:05:33.854 [main] ERROR ErrorLogger - Exception occurred at 2024-05-30T00:05:33.854701 - The column name ExpInYear is not valid.
+00:12:50.973 [main] ERROR ErrorLogger - Exception occurred at 2024-05-30T00:12:50.973029800 - Ambiguous column name 'CandidateID'.
+00:15:49.902 [main] ERROR ErrorLogger - Exception occurred at 2024-05-30T00:15:49.902796500 - The cursor is not on the insert row.
+00:19:23.974 [main] ERROR ErrorLogger - Exception occurred at 2024-05-30T00:19:23.972994600 - The cursor is not on the insert row.
+00:30:29.610 [main] ERROR ErrorLogger - Exception occurred at 2024-05-30T00:30:29.610933 - The cursor is not on the insert row.
+00:31:49.846 [main] ERROR ErrorLogger - Exception occurred at 2024-05-30T00:31:49.846913100 - The cursor is not on the insert row.
+00:37:21.690 [main] ERROR ErrorLogger - Exception occurred at 2024-05-30T00:37:21.690880500 - The cursor is not on the insert row.
+00:46:47.811 [main] ERROR ErrorLogger - Exception occurred at 2024-05-30T00:46:47.811538700 - The holdability value 1,007 is not valid.
